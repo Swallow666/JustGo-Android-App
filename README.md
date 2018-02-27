@@ -8,10 +8,10 @@ This repository for the Concocrida University Winter 2018 COEN/ELEC 390 team pro
 This android app allows users to check info of local landmarks& GPS for travelling.
 ---  
 ### Authors:  
-[Liyuan Zhang](https://github.com/Swallow666) 
-[Sheng Hua](https://github.com) 
-[Xinlu Dai](https://github.com) 
-[Xing Zhao](https://github.com) 
+[Liyuan Zhang](https://github.com/Swallow666),
+[Sheng Hua](https://github.com),
+[Xinlu Dai](https://github.com),
+[Xing Zhao](https://github.com),
 [Zhaoheng Luo](https://github.com) 
 
 
