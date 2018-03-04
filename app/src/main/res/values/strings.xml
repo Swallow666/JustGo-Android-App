@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JustGo</string>
+    <string name="title_activity_maps">Nearby Place</string>
+    <string name="browser_key">AIzaSyANDtGL1XTNGkLjCzvkgN4d5Q9OCsfsfyM</string>
 </resources>
