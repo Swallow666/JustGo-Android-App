@@ -25,11 +25,4 @@
         android:title="Hospital"
         android:icon="@drawable/ic_local_hospital_black_24dp"
         app:showAsAction="ifRoom"/>
-
-    <!--<item android:id="@+id/action_school"
-        android:enabled="true"
-        android:title="School"
-        android:icon="@drawable/ic_school_black_24dp"
-        app:showAsAction="ifRoom"/>-->
-
 </menu>
