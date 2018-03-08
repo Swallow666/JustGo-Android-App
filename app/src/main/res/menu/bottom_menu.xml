@@ -25,4 +25,5 @@
         android:title="Hospital"
         android:icon="@drawable/ic_local_hospital_black_24dp"
         app:showAsAction="ifRoom"/>
+
 </menu>
