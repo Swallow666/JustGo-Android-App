@@ -29,6 +29,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -78,6 +79,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
+
                     case R.id.action_market:
                         nearByPlace("market");
                         break;
@@ -112,7 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String url = getUrl(latitude, longitude, placeType);
         mService.getNearByPlace(url).enqueue(new Callback<MyPlaces>() {
             @Override
-            public void onResponse(Call<MyPlaces> call, Response<MyPlaces> response) {
+            public void onResponse(@NonNull Call<MyPlaces> call, @NonNull Response<MyPlaces> response) {
 
                 //remember assign value for currentPlace
                 currentPlace = response.body();
@@ -129,23 +131,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         markerOptions.position(latLng);
                         markerOptions.title(placeName);
 
-                        if (placeType.equals("market")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping));
-                        }
-                        else if (placeType.equals("restaurant")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_restaurant));
-                        }
-                        else if (placeType.equals("atm")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_atm));
-                        }
-                        else if (placeType.equals("subway_station")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_subway_station));
-                        }
-                        else if (placeType.equals("shopping_mall")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping_mall));
-                        }
-                        else {
-                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        switch (placeType) {
+                            case "market":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping));
+                                break;
+                            case "restaurant":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_restaurant));
+                                break;
+                            case "atm":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_atm));
+                                break;
+                            case "subway_station":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_subway_station));
+                                break;
+                            case "shopping_mall":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping_mall));
+                                break;
+                            default:
+                                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                                break;
                         }
 
                         //assign index for marker
@@ -162,7 +166,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             @Override
-            public void onFailure(Call<MyPlaces> call, Throwable t) {
+            public void onFailure(@NonNull Call<MyPlaces> call, Throwable t) {
 
             }
         });
@@ -170,11 +174,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private String getUrl(double latitude, double longitude, String placeType) {
         StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlacesUrl.append("location="+latitude+","+longitude);
+        googlePlacesUrl.append("location=").append(latitude).append(",").append(longitude);
         googlePlacesUrl.append("&radius="+1000);
-        googlePlacesUrl.append("&type="+placeType);
+        googlePlacesUrl.append("&type=").append(placeType);
         googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key="+getResources().getString(R.string.browser_key));
+        googlePlacesUrl.append("&key=").append(getResources().getString(R.string.browser_key));
         Log.d("getUrl", googlePlacesUrl.toString());
         return googlePlacesUrl.toString();
     }
@@ -222,7 +226,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        UiSettings mapUiSettings = mMap.getUiSettings();
+        mapUiSettings.setZoomControlsEnabled(true);
         //init Google play services
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
