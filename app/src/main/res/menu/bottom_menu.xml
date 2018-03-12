@@ -20,9 +20,17 @@
         android:icon="@drawable/ic_restaurant_black_24dp"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/action_hospital"
+    <item android:id="@+id/action_subway_station"
         android:enabled="true"
-        android:title="Hospital"
-        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="Subway station"
+        android:icon="@drawable/ic_subway_black_24dp"
         app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_shopping_mall"
+        android:enabled="true"
+        android:title="Shoping mall"
+        android:icon="@drawable/ic_shop_black_24dp"
+        app:showAsAction="ifRoom"/>
+
+
 </menu>

@@ -78,10 +78,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
-                    case R.id.action_hospital:
-                        nearByPlace("hospital");
-                        break;
-
                     case R.id.action_market:
                         nearByPlace("market");
                         break;
@@ -90,12 +86,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         nearByPlace("restaurant");
                         break;
 
-                    /*case R.id.action_school:
-                        nearByPlace("school");
-                        break;*/
+                    case R.id.action_subway_station:
+                        nearByPlace("subway_station");
+                        break;
 
                     case R.id.action_atm:
                         nearByPlace("atm");
+                        break;
+
+                    case R.id.action_shopping_mall:
+                        nearByPlace("shopping_mall");
                         break;
 
                     default:
@@ -128,10 +128,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         LatLng latLng = new LatLng(lat, lng);
                         markerOptions.position(latLng);
                         markerOptions.title(placeName);
-                        if (placeType.equals("hospital")){
-                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_hospital));
-                        }
-                        else if (placeType.equals("market")){
+
+                        if (placeType.equals("market")){
                             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping));
                         }
                         else if (placeType.equals("restaurant")){
@@ -139,6 +137,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                         else if (placeType.equals("atm")){
                             markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_atm));
+                        }
+                        else if (placeType.equals("subway_station")){
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_subway_station));
+                        }
+                        else if (placeType.equals("shopping_mall")){
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping_mall));
                         }
                         else {
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
