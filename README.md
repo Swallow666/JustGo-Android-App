@@ -12,7 +12,7 @@ This android app allows users to check info of local landmarks& GPS for travelli
 [Sheng Hua](https://github.com),
 [Xinlu Dai](https://github.com),
 [Xing Zhao](https://github.com/zhaoxing2788),
-[Zhaoheng Luo](https://github.com) 
+[Zhaoheng Luo](https://github.com/longtanpri) 
 
 
 ### Technologies
