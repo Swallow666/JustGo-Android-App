@@ -9,7 +9,7 @@ This android app allows users to check info of local landmarks& GPS for travelli
 ---  
 ### Authors:  
 [Liyuan Zhang](https://github.com/Swallow666),
-[Sheng Hua](https://github.com),
+[Sheng Hua](https://github.com/),
 [Xinlu Dai](https://github.com),
 [Xing Zhao](https://github.com/zhaoxing2788),
 [Zhaoheng Luo](https://github.com/longtanpri) 
