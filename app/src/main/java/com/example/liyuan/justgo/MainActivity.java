@@ -10,17 +10,17 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button myButton;
+    private Button findButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myButton=(Button)findViewById(R.id.rbFind);
+        findButton=(Button)findViewById(R.id.rbFind);
         buttonClickListener listener=new buttonClickListener();
 
-        myButton.setOnClickListener(listener);
+        findButton.setOnClickListener(listener);
     }
 
     class  buttonClickListener implements View.OnClickListener{
