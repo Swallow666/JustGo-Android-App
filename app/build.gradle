@@ -34,4 +34,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.sygic.travel:sdk:2.0.0-beta-1'
+    //search bar dependencies
+    compile 'com.github.mirrajabi:search-dialog:1.2'
 }
