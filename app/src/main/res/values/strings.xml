@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">JustGo</string>
     <string name="title_activity_maps">Nearby Place</string>
+    <string name="fragmentlayout1">fragmentlayout1</string>
+    <string name="title_activity_map_details">Map</string>
+    <string name="title_activity_bookmarks">Bookmarks</string>
 </resources>
