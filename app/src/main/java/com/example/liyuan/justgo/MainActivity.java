@@ -19,6 +19,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+
+import android.widget.Toast;
+
+import com.example.liyuan.justgo.Model.searchModel;
+
+import java.util.ArrayList;
+
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
+
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -34,6 +45,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private Button find;
@@ -43,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
     private static PlacesAdapter adapter = null;
     private static Location currentLocation = null;
+
+    private ArrayList<searchModel> createSampleData(){
+        ArrayList<searchModel> items = new ArrayList<>();
+        items.add(new searchModel("Montreal"));
+        items.add(new searchModel("Toronto"));
+        items.add(new searchModel("Vancouver"));
+        items.add(new searchModel("New York"));
+        items.add(new searchModel("Shanghai"));
+        items.add(new searchModel("Beijing"));
+        items.add(new searchModel("Tokyo"));
+        items.add(new searchModel("London"));
+        items.add(new searchModel("more..."));
+        return items;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +168,27 @@ public class MainActivity extends AppCompatActivity {
 
             public void onProviderEnabled(String provider) {
             }
+
+
+        findButton.setOnClickListener(listener);
+
+        //search button
+        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
+                        "Which city you wonder...?", null, createSampleData(),
+                        new SearchResultListener<searchModel>() {
+                            @Override
+                            public void onSelected(BaseSearchDialogCompat dialog,
+                                                   searchModel item, int position) {
+                                Toast.makeText(MainActivity.this, item.getTitle(),
+                                        Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
 
             public void onProviderDisabled(String provider) {
             }
