@@ -80,8 +80,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
 
-                    case R.id.action_market:
-                        nearByPlace("market");
+                    case R.id.action_cafe:
+                        nearByPlace("cafe");
                         break;
 
                     case R.id.action_restaurant:
@@ -132,8 +132,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         markerOptions.title(placeName);
 
                         switch (placeType) {
-                            case "market":
-                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_shopping));
+                            case "cafe":
+                                markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_cafe));
                                 break;
                             case "restaurant":
                                 markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_restaurant));
