@@ -8,40 +8,19 @@
     tools:context="com.example.liyuan.justgo.MainActivity">
 
 
-    <Button
-        android:id="@+id/searchButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/searchButton_name" />
-
-    <Button
-        android:id="@+id/festivalButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/searchButton" />
-
-    <WebView
-        android:id="@+id/Web"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </WebView>
-
     <FrameLayout
         android:id="@+id/navigation_id"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/searchButton_name" />
+
     </FrameLayout>
-
-
-    <TextView
-        android:id="@+id/result"
-        android:layout_width="match_parent"
-        android:layout_height="208dp"
-        android:layout_below="@+id/searchButton"
-        android:text="TextView" />
 
     <LinearLayout
         android:layout_width="match_parent"
