@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyANDtGL1XTNGkLjCzvkgN4d5Q9OCsfsfyM", new JsonHttpResponseHandler () {
+                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyDX5qCv5dhVzcmJ6xutbfiWk31o2KoQsps", new JsonHttpResponseHandler () {
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         //Log.d("JSON", response.toString());
@@ -79,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONArray resultsArray = response.getJSONArray("results");
 
                             for(int i = 0; i < resultsArray.length();i++){
-
-                                //Log.d("ID", resultsArray.getJSONObject(i).get("id").toString());
+                                 //Log.d("ID", resultsArray.getJSONObject(i).get("id").toString());
 
                                 double placeLat = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lat").toString());
                                 double placeLng = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lng").toString());

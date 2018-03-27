@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyDX5qCv5dhVzcmJ6xutbfiWk31o2KoQsps" />
 
         <activity
             android:name=".MainActivity"
