@@ -77,6 +77,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+
+        //search button
+        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
+                        "Which city you wonder...?", null, createSampleData(),
+                        new SearchResultListener<searchModel>() {
+                            @Override
+                            public void onSelected(BaseSearchDialogCompat dialog,
+                                                   searchModel item, int position) {
+                                Toast.makeText(MainActivity.this, item.getTitle(),
+                                        Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        }).show();
+            }
+        });
+
         getLocationPermission();
 
         // Acquire a reference to the system Location Manager
@@ -168,27 +187,6 @@ public class MainActivity extends AppCompatActivity {
 
             public void onProviderEnabled(String provider) {
             }
-
-
-        findButton.setOnClickListener(listener);
-
-        //search button
-        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
-                        "Which city you wonder...?", null, createSampleData(),
-                        new SearchResultListener<searchModel>() {
-                            @Override
-                            public void onSelected(BaseSearchDialogCompat dialog,
-                                                   searchModel item, int position) {
-                                Toast.makeText(MainActivity.this, item.getTitle(),
-                                        Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                            }
-                        }).show();
-            }
-        });
 
             public void onProviderDisabled(String provider) {
             }
