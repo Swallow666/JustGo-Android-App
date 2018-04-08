@@ -10,8 +10,8 @@
     <string name="login_page">Sign in</string>
     <string name="plan">Plan</string>
     <string name="register">Register</string>
-    <string name="sign_in">Sign in</string>
-    <string name="create_an_account">Create an Account</string>
+    <string name="sign_in">Login</string>
+    <string name="create_an_account">Not registered yet? Create one</string>
     <string name="enter_email">Enter Email</string>
     <string name="enter_password">Enter Password</string>
     <string name="remember_me">Remember me</string>
