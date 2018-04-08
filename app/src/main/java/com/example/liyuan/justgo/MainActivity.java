@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.nfc.Tag;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -13,15 +14,20 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -38,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button find;
     private Button plan;
+    private String placeID;
+    private static final String TAG = "MainActivity";
 
     private static final int ACCESS_FINE_LOCATION = 1;
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
@@ -49,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+
+        final PlaceAutocompleteFragment Country = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.searchCountry);
+
+
         setSupportActionBar(myToolbar);
 
         getLocationPermission();
@@ -191,6 +204,30 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity.this,StartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Country.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
+                Log.i(TAG,""+place.getName());
+                placeID=place.getId().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.i(TAG,"Error code"+status);
+            }
+        });
+
+        final Button search = findViewById(R.id.searchButton);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(MainActivity.this,MapsActivity.class);
+                intent.putExtra("place_id", placeID);
                 startActivity(intent);
             }
         });
