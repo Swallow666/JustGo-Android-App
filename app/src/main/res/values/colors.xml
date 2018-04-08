@@ -6,4 +6,6 @@
     <color name="greyColor">#C2C2C2</color>
     <color name="whiteColor">#ffffff</color>
     <color name="backColor">#F5F5F5</color>
+    <color name="colorApp">#4B7C8C</color>
+    <color name="white">#CFDFDF</color>
 </resources>
