@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.liyuan.justgo.Activities.CreatePlan3">
+
+
+    <EditText
+        android:id="@+id/txtDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:hint="@string/description_here"
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:textColorLink="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="43dp"
+        android:text="@string/create" />
+
+    <TextView
+        android:id="@+id/textViewPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plan"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/txtDescription"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        tools:ignore="HardcodedText"
+        android:layout_marginRight="49dp"
+        android:layout_marginEnd="49dp"
+        android:layout_alignTop="@+id/btnCreate"
+        android:layout_toLeftOf="@+id/btnCreate"
+        android:layout_toStartOf="@+id/btnCreate" />
+
+    <TextView
+        android:id="@+id/textViewStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StartDate"
+        tools:ignore="HardcodedText"
+        android:layout_alignTop="@+id/btnCreate"
+        android:layout_alignLeft="@+id/textViewEndDate"
+        android:layout_alignStart="@+id/textViewEndDate" />
+
+    <TextView
+        android:id="@+id/textViewEndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EndDate"
+        tools:ignore="HardcodedText"
+        android:layout_alignBottom="@+id/btnCreate"
+        android:layout_toRightOf="@+id/btnCreate"
+        android:layout_toEndOf="@+id/btnCreate"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp" />
+
+    <TextView
+        android:id="@+id/textViewBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Budget"
+        tools:ignore="HardcodedText"
+        android:layout_alignBottom="@+id/btnCreate"
+        android:layout_alignRight="@+id/textViewLocation"
+        android:layout_alignEnd="@+id/textViewLocation" />
+
+</RelativeLayout>

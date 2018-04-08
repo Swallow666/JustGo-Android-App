@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.liyuan.justgo.Activities.CreatePlan2">
+
+    <Button
+        android:id="@+id/btnGoCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/datePicker"
+        app:layout_constraintRight_toRightOf="@+id/txtMap"
+        tools:ignore="UnknownId,UnknownIdInLayout"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <TextView
+        android:id="@+id/txtWhen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="@string/when_do_you_want_to_go"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <EditText
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtWhen"
+        android:layout_alignStart="@+id/txtWhen"
+        android:layout_below="@+id/txtWhen"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/start_date"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:textColorLink="@color/colorPrimary"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startDate"
+        android:layout_alignStart="@+id/startDate"
+        android:layout_below="@+id/startDate"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:hint="@string/end_date"
+        android:inputType="none"
+        android:focusableInTouchMode="false"
+        android:textColorLink="@color/colorPrimary"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/txtBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/endDate"
+        android:layout_alignStart="@+id/endDate"
+        android:layout_below="@+id/endDate"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="@string/plan_budget"
+        android:inputType="numberDecimal"
+        android:textColorLink="@color/colorPrimary" />
+
+</RelativeLayout>
