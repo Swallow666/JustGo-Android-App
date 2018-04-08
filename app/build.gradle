@@ -43,5 +43,3 @@ dependencies {
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.0.3'
 
 }
-
-

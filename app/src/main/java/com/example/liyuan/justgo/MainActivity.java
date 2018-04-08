@@ -22,6 +22,8 @@ import android.widget.Button;
 
 import android.widget.Toast;
 
+import com.example.liyuan.justgo.Activities.PlanPage;
+import com.example.liyuan.justgo.Activities.RegisterPage;
 import com.example.liyuan.justgo.Model.searchModel;
 
 import java.util.ArrayList;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button find;
     private Button plan;
+    private Button me;
 
     private static final int ACCESS_FINE_LOCATION = 1;
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
@@ -223,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
         find=(Button)findViewById(R.id.rbFind);
         plan=(Button)findViewById(R.id.rbPlan);
+        me=(Button)findViewById ( R.id.rbMine );
 
         find.setOnClickListener(new View.OnClickListener(){
 
@@ -235,7 +239,15 @@ public class MainActivity extends AppCompatActivity {
         plan.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,StartActivity.class);
+                Intent intent=new Intent(MainActivity.this,PlanPage.class);
+                startActivity(intent);
+            }
+        });
+
+        me.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,UserProfile.class);
                 startActivity(intent);
             }
         });

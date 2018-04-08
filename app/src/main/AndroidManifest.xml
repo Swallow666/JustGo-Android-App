@@ -30,18 +30,37 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ViewPlace" />
         <activity android:name=".MapsActivity" />
-        <activity android:name=".PlanActivity"/>
-        <activity android:name=".VacationActivity" />
-        <activity android:name=".VacationsMainActivity" />
-        <activity android:name=".TransportationEventActivity" />
-        <activity android:name=".LeisureEventActivity" />
-        <activity android:name=".StartActivity"/>
         <activity android:name=".PlaceActivity" />
+        <activity
+            android:name=".Activities.LoginPage"
+            android:label="@string/login_page" />
+        <activity
+            android:name=".Activities.RegisterPage"
+            android:label="@string/register_page" />
+        <activity
+            android:name=".Activities.ProfilePage"
+            android:label="@string/title_activity_profile_page" />
+        <activity
+            android:name=".Activities.PlanPage"
+            android:label="@string/planner_page" />
+        <activity
+            android:name=".Activities.CreatePlanPage"
+            android:label="@string/create_plans" />
+        <activity android:name=".Activities.CreatePlan2" />
+        <activity
+            android:name=".Activities.MapPage"
+            android:label="@string/title_activity_map_page" />
+        <activity android:name=".Activities.CreatePlan3" />
+        <activity android:name=".Activities.PlanProfile" />
+        <activity
+            android:name=".Activities.Menu_Activity"
+            android:label="@string/title_activity_menu_"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BookmarksActivity"
             android:label="@string/title_activity_bookmarks"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".UserProfile"></activity>
     </application>
 
 </manifest>

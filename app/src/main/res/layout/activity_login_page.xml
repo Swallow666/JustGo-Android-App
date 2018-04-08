@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.liyuan.justgo.Activities.LoginPage">
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/enter_email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="textStart"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/txtRetype"
+        app:layout_constraintRight_toRightOf="@+id/txtRetype"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:gravity="start" />
+
+    <EditText
+        android:id="@+id/txtRetype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtEmail"
+        android:layout_alignStart="@+id/txtEmail"
+        android:layout_below="@+id/txtEmail"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword"
+        android:textAlignment="textStart"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+        app:layout_constraintLeft_toLeftOf="@+id/btnSignIn"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <CheckBox
+        android:id="@+id/chRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnSignIn"
+        android:layout_alignBottom="@+id/btnSignIn"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_toEndOf="@+id/btnSignIn"
+        android:layout_toRightOf="@+id/btnSignIn"
+        android:text="@string/remember_me"
+        android:textColorLink="@color/colorPrimaryDark"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnSignIn"
+        app:layout_constraintHorizontal_bias="0.447"
+        app:layout_constraintLeft_toRightOf="@+id/passForgot"
+        app:layout_constraintRight_toRightOf="@+id/passForgot"
+        tools:ignore="UnknownId"
+        tools:layout_constraintBaseline_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1" />
+
+    <TextView
+        android:id="@+id/txtReg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendRegister"
+        android:text="@string/create_an_account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/txtRetype"
+        android:layout_centerHorizontal="true"
+        tools:ignore="OnClick" />
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_in"
+        app:layout_constraintRight_toLeftOf="@+id/chRemember"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toTopOf="@+id/passForgot"
+        android:layout_marginTop="23dp"
+        tools:ignore="UnknownId"
+        android:layout_below="@+id/txtReg"
+        android:layout_alignLeft="@+id/txtRetype"
+        android:layout_alignStart="@+id/txtRetype" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtReg"
+        android:layout_alignStart="@+id/txtReg"
+        android:layout_below="@+id/txtRetype"
+        android:text="@string/forgot_password" />
+
+</RelativeLayout>
