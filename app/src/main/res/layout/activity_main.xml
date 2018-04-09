@@ -41,7 +41,7 @@
                 android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"/>
             <Button
                 android:id="@+id/search"
-                android:layout_width="75dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp" />
 
         </LinearLayout>

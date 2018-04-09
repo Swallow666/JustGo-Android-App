@@ -3,6 +3,8 @@ package com.example.liyuan.justgo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -25,9 +27,9 @@ import android.widget.Toast;
 
 import com.example.liyuan.justgo.Activities.LoginPage;
 import com.example.liyuan.justgo.Activities.PlanPage;
-import com.example.liyuan.justgo.Activities.RegisterPage;
 import com.example.liyuan.justgo.Model.searchModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
@@ -35,13 +37,10 @@ import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -49,10 +48,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String TAG="MainActivity";
     private String mySearch;
+    private String myloc="";
 
     private static final int ACCESS_FINE_LOCATION = 1;
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
@@ -105,9 +105,11 @@ public class MainActivity extends AppCompatActivity {
                                                    searchModel item, int position) {
                                 Toast.makeText(MainActivity.this, item.getTitle(),
                                         Toast.LENGTH_SHORT).show();
+                                myloc=item.getTitle().toString();
                                 dialog.dismiss();
                             }
                         }).show();
+
             }
         });
 
@@ -121,9 +123,22 @@ public class MainActivity extends AppCompatActivity {
 
             public void onLocationChanged(Location location) {
                 // Called when a new location is found by the network location provider.
-                currentLocation = location;
-                Double lat = location.getLatitude();
-                Double lng = location.getLongitude();
+                    currentLocation = location;
+                    Double lat = location.getLatitude();
+                    Double lng = location.getLongitude();
+                    if(myloc!=""){
+                        Geocoder geocoder=new Geocoder(MainActivity.this,Locale.getDefault());
+                        List<Address> addresslist=null;
+                        addresslist.add(new Address(Locale.getDefault()));
+                        try {
+                            addresslist=geocoder.getFromLocationName(myloc,1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        lat=addresslist.get(0).getLatitude();
+                            lng=addresslist.get(0).getLongitude();
+                    }
+
 
                 //Log.d("Location", lat.toString() + ", " + lng.toString());
 
