@@ -25,8 +25,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
 
     private final AppCompatActivity activity = RegisterPage.this;
 
-    private EditText txtFirstName;
-    private EditText txtLastName;
+    private EditText txtUserName;
     private EditText txtCountry;
     private Button btnRegister;
     private EditText txtEmail;
@@ -43,8 +42,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        txtFirstName = (EditText)findViewById(R.id.txtFirstName);
-        txtLastName = (EditText)findViewById(R.id.txtLastName);
+        txtUserName = (EditText)findViewById(R.id.txtUserName);
         txtCountry = (EditText)findViewById(R.id.txtCountry);
         btnRegister = (Button)findViewById(R.id.btnRegister);
         txtEmail = (EditText)findViewById(R.id.txtEmail);
@@ -89,8 +87,7 @@ public class RegisterPage extends AppCompatActivity implements View.OnClickListe
         }
         else if (!databaseHelper.checkEmail(txtEmail.getText().toString().trim())) {
 
-            user.setFirst_name(txtFirstName.getText().toString().trim());
-            user.setLast_name(txtLastName.getText().toString().trim());
+            user.setLast_name(txtUserName.getText().toString().trim());
             user.setCountry(txtCountry.getText().toString().trim());
             user.setEmail(txtEmail.getText().toString().trim());
             user.setPassword(txtPassword.getText().toString().trim());
