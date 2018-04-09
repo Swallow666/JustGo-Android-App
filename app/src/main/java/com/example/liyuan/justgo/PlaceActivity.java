@@ -54,7 +54,7 @@ public class PlaceActivity extends FragmentActivity implements OnMapReadyCallbac
 
         AsyncHttpClient client = new AsyncHttpClient();
 
-        client.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4", new JsonHttpResponseHandler() {
+        client.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + id + "&key=AIzaSyBBJiTGBzpbpzQ-yBz2Olw6lqxH5I5a4sU", new JsonHttpResponseHandler() {
 
 
             @Override

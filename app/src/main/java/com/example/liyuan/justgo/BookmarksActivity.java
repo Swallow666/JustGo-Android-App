@@ -40,9 +40,9 @@ public class BookmarksActivity extends AppCompatActivity {
 
         ArrayList<Bookmark> arrayOfBookmarksRaw = db.getAllBookmarks();
         for (Bookmark bookmark : arrayOfBookmarksRaw) {
-            Log.d("URL", "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + bookmark.getPlaceId() + "&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4");
+            Log.d("URL", "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + bookmark.getPlaceId() + "&key=AIzaSyBBJiTGBzpbpzQ-yBz2Olw6lqxH5I5a4sU");
             AsyncHttpClient client = new AsyncHttpClient();
-            client.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + bookmark.getPlaceId() + "&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4", new JsonHttpResponseHandler() {
+            client.get("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + bookmark.getPlaceId() + "&key=AIzaSyBBJiTGBzpbpzQ-yBz2Olw6lqxH5I5a4sU", new JsonHttpResponseHandler() {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

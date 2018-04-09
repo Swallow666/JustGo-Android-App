@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
                 AsyncHttpClient client = new AsyncHttpClient();
 
-                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4", new JsonHttpResponseHandler () {
+                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyBBJiTGBzpbpzQ-yBz2Olw6lqxH5I5a4sU", new JsonHttpResponseHandler () {
 
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

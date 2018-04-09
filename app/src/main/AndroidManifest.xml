@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4" />
+            android:value="AIzaSyBBJiTGBzpbpzQ-yBz2Olw6lqxH5I5a4sU" />
 
         <activity
             android:name=".AppStart"
