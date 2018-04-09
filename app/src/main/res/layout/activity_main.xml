@@ -24,7 +24,7 @@
         android:orientation="horizontal">
 
         <RadioGroup
-            android:id="@+id/rgTools"
+            android:id="@+id/rgtabs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

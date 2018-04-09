@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 500, locationListener);
             // Construct the data source
             // Create the adapter to convert the array to views
             adapter = new PlacesAdapter(this, arrayOfPlaces);
