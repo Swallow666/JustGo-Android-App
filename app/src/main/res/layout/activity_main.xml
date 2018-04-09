@@ -32,7 +32,7 @@
         <ListView
             android:id="@+id/listViewPlaces"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="460dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/searchButton" />
