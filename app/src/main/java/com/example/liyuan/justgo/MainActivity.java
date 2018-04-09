@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyANDtGL1XTNGkLjCzvkgN4d5Q9OCsfsfyM", new JsonHttpResponseHandler () {
+                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyDX5qCv5dhVzcmJ6xutbfiWk31o2KoQsps", new JsonHttpResponseHandler () {
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         //Log.d("JSON", response.toString());
@@ -193,12 +193,12 @@ public class MainActivity extends AppCompatActivity {
             public void onProviderEnabled(String provider) {
             }
 
-            public void onProviderDisabled(String provider) {
-            }
+        public void onProviderDisabled(String provider) {
+        }
         };
 
         try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 500, locationListener);
             // Construct the data source
             // Create the adapter to convert the array to views
             adapter = new PlacesAdapter(this, arrayOfPlaces);
