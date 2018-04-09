@@ -50,6 +50,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -60,17 +61,19 @@ public class MainActivity extends AppCompatActivity {
     private Button plan;
     private Button me;
 
+    private double lat=0;
+    private double lng=0;
 
-    private final static String TAG="MainActivity";
+    private final static String TAG = "MainActivity";
     private String mySearch;
-    private String myloc="";
+    private String myloc = "";
 
     private static final int ACCESS_FINE_LOCATION = 1;
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
     private static PlacesAdapter adapter = null;
     private static Location currentLocation = null;
 
-    private ArrayList<searchModel> createSampleData(){
+    private ArrayList<searchModel> createSampleData() {
         ArrayList<searchModel> items = new ArrayList<>();
         items.add(new searchModel("Montreal"));
         items.add(new searchModel("Toronto"));
@@ -85,6 +88,35 @@ public class MainActivity extends AppCompatActivity {
         return items;
     }
 
+    private LocationListener locationListener = new LocationListener() {
+
+
+        public void onLocationChanged(Location location) {
+            // Called when a new location is found by the network location provider.
+            currentLocation = location;
+            lat = location.getLatitude();
+            lng = location.getLongitude();
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
+    };
+    private LocationManager locationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,216 +124,194 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getCurrentLocation();
 
-        //search button
-        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
-                        "Which city you wonder...?", null, createSampleData(),
-                        new SearchResultListener<searchModel>() {
-                            @Override
-                            public void onSelected(BaseSearchDialogCompat dialog,
-                                                   searchModel item, int position) {
-                                Toast.makeText(MainActivity.this, item.getTitle(),
-                                        Toast.LENGTH_SHORT).show();
-                                myloc=item.getTitle();
-                                dialog.dismiss();
-                            }
-                        }).show();
-
+        if (myloc != "") {
+            Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+            List<Address> addresslist = null;
+            addresslist.add(new Address(Locale.getDefault()));
+            try {
+                addresslist = geocoder.getFromLocationName(myloc, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
-        getLocationPermission();
-
-        // Acquire a reference to the system Location Manager
-        LocationManager locationManager = (LocationManager) this.getSystemService( Context.LOCATION_SERVICE);
-
-        // Define a listener that responds to location updates
-        LocationListener locationListener = new LocationListener() {
-
-            public void onLocationChanged(Location location) {
-                // Called when a new location is found by the network location provider.
-                    currentLocation = location;
-                    Double lat = location.getLatitude();
-                    Double lng = location.getLongitude();
-                    if(myloc!=""){
-                        Geocoder geocoder=new Geocoder(MainActivity.this,Locale.getDefault());
-                        List<Address> addresslist=null;
-                        addresslist.add(new Address(Locale.getDefault()));
-                        try {
-                            addresslist=geocoder.getFromLocationName(myloc,1);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        lat=addresslist.get(0).getLatitude();
-                            lng=addresslist.get(0).getLongitude();
-                    }
-
-
-                //Log.d("Location", lat.toString() + ", " + lng.toString());
-
-
-                AsyncHttpClient client = new AsyncHttpClient();
-
-                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4", new JsonHttpResponseHandler () {
-
-
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        //Log.d("JSON", response.toString());
-                        adapter.clear();
-                        arrayOfPlaces = new ArrayList<Place>();
-                        try {
-                            JSONArray resultsArray = response.getJSONArray("results");
-
-                            for(int i = 0; i < resultsArray.length();i++){
-
-                                //Log.d("ID", resultsArray.getJSONObject(i).get("id").toString());
-
-                                double placeLat = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lat").toString());
-                                double placeLng = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lng").toString());
-                                Location locationPlace = new Location("");
-                                locationPlace.setLatitude(placeLat);
-                                locationPlace.setLongitude(placeLng);
-
-                                double distance = locationPlace.distanceTo(currentLocation)*0.000621371192;;
-
-                                String refPhoto;
-                                String isOpen;
-                                double rating;
-
-                                if(resultsArray.getJSONObject(i).has("photos")){
-                                    refPhoto = resultsArray.getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference");
-                                } else {
-                                    refPhoto = "test";
-                                }
-
-
-                                if(resultsArray.getJSONObject(i).has("opening_hours")) {
-                                    if (resultsArray.getJSONObject(i).getJSONObject("opening_hours").get("open_now").toString().equals("true")) {
-                                        isOpen = "Open Now";
-                                    } else {
-                                        isOpen = "Closed";
-                                    }
-                                } else {
-                                    isOpen = "Unavaliable";
-                                }
-
-                                if(resultsArray.getJSONObject(i).has("rating")){
-                                    rating = Double.valueOf(resultsArray.getJSONObject(i).get("rating").toString());
-                                } else {
-                                    rating = 0;
-                                }
-
-
-                                Place place = new Place(resultsArray.getJSONObject(i).get("place_id").toString(), resultsArray.getJSONObject(i).get("name").toString(), rating, refPhoto, distance, isOpen);
-                                arrayOfPlaces.add(place);
-                            }
-                            adapter.addAll(arrayOfPlaces);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-
-
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        Toast.makeText(getApplicationContext(), "Error grabbing nearby places", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            public void onProviderEnabled(String provider) {
-            }
-
-        public void onProviderDisabled(String provider) {
+            lat = addresslist.get(0).getLatitude();
+            lng = addresslist.get(0).getLongitude();
         }
-        };
 
-        try {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 500, locationListener);
-            // Construct the data source
-            // Create the adapter to convert the array to views
-            adapter = new PlacesAdapter(this, arrayOfPlaces);
-            // Attach the adapter to a ListView
-            ListView listView = (ListView) findViewById(R.id.listViewPlaces);
-            listView.setAdapter(adapter);
+            AsyncHttpClient client = new AsyncHttpClient();
+
+            client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat + "," + lng + "&rankby=distance&language=en&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4", new JsonHttpResponseHandler() {
 
 
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                    //Log.d("JSON", response.toString());
+                    adapter.clear();
+                    arrayOfPlaces = new ArrayList<Place>();
+                    try {
+                        JSONArray resultsArray = response.getJSONArray("results");
+
+                        for (int i = 0; i < resultsArray.length(); i++) {
+
+                            //Log.d("ID", resultsArray.getJSONObject(i).get("id").toString());
+
+                            double placeLat = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lat").toString());
+                            double placeLng = Double.parseDouble(resultsArray.getJSONObject(i).getJSONObject("geometry").getJSONObject("location").get("lng").toString());
+                            Location locationPlace = new Location("");
+                            locationPlace.setLatitude(placeLat);
+                            locationPlace.setLongitude(placeLng);
+
+                            double distance = locationPlace.distanceTo(currentLocation) * 0.000621371192;
+                            ;
+
+                            String refPhoto;
+                            String isOpen;
+                            double rating;
+
+                            if (resultsArray.getJSONObject(i).has("photos")) {
+                                refPhoto = resultsArray.getJSONObject(i).getJSONArray("photos").getJSONObject(0).getString("photo_reference");
+                            } else {
+                                refPhoto = "test";
+                            }
+
+
+                            if (resultsArray.getJSONObject(i).has("opening_hours")) {
+                                if (resultsArray.getJSONObject(i).getJSONObject("opening_hours").get("open_now").toString().equals("true")) {
+                                    isOpen = "Open Now";
+                                } else {
+                                    isOpen = "Closed";
+                                }
+                            } else {
+                                isOpen = "Unavaliable";
+                            }
+
+                            if (resultsArray.getJSONObject(i).has("rating")) {
+                                rating = Double.valueOf(resultsArray.getJSONObject(i).get("rating").toString());
+                            } else {
+                                rating = 0;
+                            }
+
+
+                            Place place = new Place(resultsArray.getJSONObject(i).get("place_id").toString(), resultsArray.getJSONObject(i).get("name").toString(), rating, refPhoto, distance, isOpen);
+                            arrayOfPlaces.add(place);
+                        }
+                        adapter.addAll(arrayOfPlaces);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+
+                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                    Toast.makeText(getApplicationContext(), "Error grabbing nearby places", Toast.LENGTH_SHORT).show();
+                }
+            });
+            //search button
+            findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Place item = adapter.getItemAtPosition(position);
+                public void onClick(View v) {
+                    new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
+                            "Which city you wonder...?", null, createSampleData(),
+                            new SearchResultListener<searchModel>() {
+                                @Override
+                                public void onSelected(BaseSearchDialogCompat dialog,
+                                                       searchModel item, int position) {
+                                    Toast.makeText(MainActivity.this, item.getTitle(),
+                                            Toast.LENGTH_SHORT).show();
+                                    myloc = item.getTitle().toString();
+                                    dialog.dismiss();
+                                }
+                            }).show();
 
-                    // Log.d("Place", item.getName());
+                }
+            });
 
+            getLocationPermission();
+
+            // Acquire a reference to the system Location Manager
+
+
+            try {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 60000, 500, locationListener);
+                // Construct the data source
+                // Create the adapter to convert the array to views
+                adapter = new PlacesAdapter(this, arrayOfPlaces);
+                // Attach the adapter to a ListView
+                ListView listView = (ListView) findViewById(R.id.listViewPlaces);
+                listView.setAdapter(adapter);
+
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Place item = adapter.getItemAtPosition(position);
+
+                        // Log.d("Place", item.getName());
+
+                        Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+                        //based on item add info to intent
+                        intent.putExtra("place_id", item.getId());
+                        startActivity(intent);
+                    }
+
+                });
+            } catch (SecurityException e) {
+
+            }
+            //registerReceiver(gpsReciever, new IntentFilter("android.location.PROVIDERS_CHANGED"));
+
+            find = (Button) findViewById(R.id.rbFind);
+            plan = (Button) findViewById(R.id.rbPlan);
+            me = (Button) findViewById(R.id.rbMine);
+
+            find.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            plan.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, PlanPage.class);
+                    startActivity(intent);
+                }
+            });
+
+            me.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, LoginPage.class);
+                    startActivity(intent);
+                }
+            });
+            PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                    getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+            autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+                @Override
+                public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
+                    Log.i(TAG, "Place: " + place.getName());
                     Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
-                    //based on item add info to intent
-                    intent.putExtra("place_id", item.getId());
+                    intent.putExtra("place_id", place.getId());
                     startActivity(intent);
                 }
 
+                @Override
+                public void onError(Status status) {
+                    // TODO:Handle the error.
+                    Log.i(TAG, "An error occurred: " + status);
+                }
             });
-        } catch (SecurityException e){
+
 
         }
-        //registerReceiver(gpsReciever, new IntentFilter("android.location.PROVIDERS_CHANGED"));
-
-        find=(Button)findViewById(R.id.rbFind);
-        plan=(Button)findViewById(R.id.rbPlan);
-        me=(Button)findViewById ( R.id.rbMine );
-
-        find.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        plan.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,PlanPage.class);
-                startActivity(intent);
-            }
-        });
-
-        me.setOnClickListener(new View.OnClickListener(){
-
-            public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,LoginPage.class);
-                startActivity(intent);
-            }
-        });
-        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
-                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-
-            @Override
-            public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
-                Log.i(TAG, "Place: " + place.getName());
-                Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
-                intent.putExtra("place_id", place.getId());
-                startActivity(intent);
-            }
-
-            @Override
-            public void onError(Status status) {
-                // TODO:Handle the error.
-                Log.i(TAG, "An error occurred: " + status);
-            }
-        });
-
-
-    }
 
     private void getLocationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -348,6 +358,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void getCurrentLocation() {
+        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        Location location = null;
+
+        if (isGPSEnabled) {
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                    0, 0, locationListener);
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+
+    }
+
+    // Define a listener that responds to location updates
 
 
 }
