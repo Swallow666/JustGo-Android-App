@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,6 +37,11 @@ import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -54,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
     private Button find;
     private Button plan;
     private Button me;
+    private Button search;
+
+    private final static String TAG="MainActivity";
+    private String mySearch;
 
     private static final int ACCESS_FINE_LOCATION = 1;
     private static ArrayList<Place> arrayOfPlaces = new ArrayList<Place>();
@@ -253,6 +263,40 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
+                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+            @Override
+            public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
+                Log.i(TAG, "Place: " + place.getName());
+                mySearch=place.getId().toString();
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO:Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
+        search=(Button)findViewById(R.id.searchButton);
+        search.setText("Search");
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!mySearch.isEmpty()) {
+                    Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+                    intent.putExtra("place_id", mySearch);
+                    startActivity(intent);
+                }
+                else{
+                    Log.i(TAG,"Searching tool is empty");
+                }
+            }
+        });
+
     }
 
     private void getLocationPermission() {
