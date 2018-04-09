@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JustGo-Android-App.iml" filepath="$PROJECT_DIR$/JustGo-Android-App.iml" />
+      <module fileurl="file://C:\ELEC-390\JustGo-Android-gg-App\JustGo-Android-App.iml" filepath="C:\ELEC-390\JustGo-Android-gg-App\JustGo-Android-App.iml" />
       <module fileurl="file://C:\ELEC-390\JustGo-Android-App\JustGo-Android-App5.iml" filepath="C:\ELEC-390\JustGo-Android-App\JustGo-Android-App5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JustGo-Android-gg-App.iml" filepath="$PROJECT_DIR$/JustGo-Android-gg-App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\ELEC-390\JustGo-Android-gg-App\app\app.iml" filepath="C:\ELEC-390\JustGo-Android-gg-App\app\app.iml" />
     </modules>
   </component>
 </project>

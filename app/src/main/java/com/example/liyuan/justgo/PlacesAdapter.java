@@ -64,7 +64,7 @@ public class PlacesAdapter extends ArrayAdapter<Place> {
             rbRating.setNumStars((int) place.getRating());
         }
 
-        String imageUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + place.getImageUrl() + "&key=AIzaSyDX5qCv5dhVzcmJ6xutbfiWk31o2KoQsps";
+        String imageUrl = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + place.getImageUrl() + "&key=AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4";
         Picasso.with(ctx).load(imageUrl).into(ivImage);
         // Return the completed view to render on screen
         return convertView;

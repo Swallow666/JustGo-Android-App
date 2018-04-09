@@ -1,4 +1,9 @@
 <resources>
+<<<<<<< HEAD
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyChk09yJe-yOPp8Iysz2jro00zJ9LwFyTA</string>
     <string name="browser_key" >AIzaSyChk09yJe-yOPp8Iysz2jro00zJ9LwFyTA</string>
+=======
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4</string>
+    <string name="browser_key" >AIzaSyAUEyYYBqR-19wQWG0LWNZjyTWP0mh3MH4</string>
+>>>>>>> master
 </resources>
