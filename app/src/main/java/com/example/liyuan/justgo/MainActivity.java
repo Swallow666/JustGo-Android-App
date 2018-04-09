@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private Button find;
     private Button plan;
     private Button me;
-    private Button search;
+
 
     private final static String TAG="MainActivity";
     private String mySearch;
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 AsyncHttpClient client = new AsyncHttpClient();
-                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyDX5qCv5dhVzcmJ6xutbfiWk31o2KoQsps", new JsonHttpResponseHandler () {
+                client.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=tourist+attraction&location=" + lat.toString() + "," + lng.toString() + "&rankby=distance&language=en&key=AIzaSyChk09yJe-yOPp8Iysz2jro00zJ9LwFyTA", new JsonHttpResponseHandler () {
 
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         //Log.d("JSON", response.toString());
@@ -286,7 +286,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPlaceSelected(com.google.android.gms.location.places.Place place) {
                 Log.i(TAG, "Place: " + place.getName());
-                mySearch=place.getId().toString();
+                Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+                intent.putExtra("place_id", place.getId());
+                startActivity(intent);
             }
 
             @Override
@@ -296,23 +298,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        search=(Button)findViewById(R.id.search);
-        search.setText("Search");
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(mySearch!="") {
-                    Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
-                    intent.putExtra("place_id", mySearch);
-                    startActivity(intent);
-                }
-                else{
-                    Toast toast=Toast.makeText(MainActivity.this, "Empty",
-                            Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
 
     }
 
