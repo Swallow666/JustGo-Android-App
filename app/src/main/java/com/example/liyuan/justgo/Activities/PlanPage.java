@@ -25,6 +25,9 @@ import com.example.liyuan.justgo.Database.DataBaseHelper;
 import com.example.liyuan.justgo.MainActivity;
 import com.example.liyuan.justgo.MapsActivity;
 import com.example.liyuan.justgo.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import java.util.ArrayList;
 
@@ -135,7 +138,16 @@ public class PlanPage extends AppCompatActivity implements View.OnClickListener 
         editor.clear();
         editor.apply();
         startActivity(new Intent (PlanPage.this, MainActivity.class));
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder( GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient.signOut().addOnCompleteListener(task -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
+
 
     public void ViewProfile()
     {

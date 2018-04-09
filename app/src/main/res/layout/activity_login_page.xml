@@ -91,5 +91,14 @@
             android:gravity="center"
             android:textSize="16dip"/>
 
+        <com.google.android.gms.common.SignInButton
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:id="@+id/GoogleLogin">
+
+        </com.google.android.gms.common.SignInButton>
+
     </LinearLayout>
+
+
 </ScrollView>
