@@ -38,7 +38,7 @@
     <string name="start_date">Start Date</string>
     <string name="plan_budget">Plan Budget</string>
     <string name="description">Description</string>
-    <string name="description_here">Description here</string>
+    <string name="description_here">Add Description here</string>
     <string name="retype_your_password">Confirm Password</string>
     <string name="title_activity_profile_page">Profile</string>
     <string name="title_activity_menu_">Menu_Activity</string>

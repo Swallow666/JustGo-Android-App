@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,8 +34,8 @@ public class PlanProfile extends AppCompatActivity implements View.OnClickListen
     DataBaseHelper databaseHelper;
     private static final String TAG = "PlanProfile";
     private ImageButton btnBackP;
-    private TextView txtPlanUpdate;
-    private TextView txtPlanDelete;
+    private Button txtPlanUpdate;
+    private Button txtPlanDelete;
     private plan plan;
     private location1 location;
     private EditText textViewPlanName;
@@ -53,8 +54,8 @@ public class PlanProfile extends AppCompatActivity implements View.OnClickListen
 
 
         btnBackP = (ImageButton)findViewById(R.id.btnBackP);
-        txtPlanUpdate = (TextView) findViewById(R.id.txtPlanUpdate);
-        txtPlanDelete = (TextView)findViewById(R.id.txtPlanDelete);
+        txtPlanUpdate = (Button) findViewById(R.id.txtPlanUpdate);
+        txtPlanDelete = (Button)findViewById(R.id.txtPlanDelete);
         textViewPlanName = (EditText)findViewById(R.id.textViewPname);
         textViewStartDate = (EditText)findViewById(R.id.textViewSdate);
         textViewEndDate = (EditText)findViewById(R.id.textViewEdate);

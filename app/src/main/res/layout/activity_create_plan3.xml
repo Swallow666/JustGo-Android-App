@@ -23,9 +23,9 @@
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textViewEndDate"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="43dp"
+        android:layout_marginTop="82dp"
         android:text="@string/create" />
 
     <TextView
@@ -41,44 +41,44 @@
         android:id="@+id/textViewLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location"
-        tools:ignore="HardcodedText"
-        android:layout_marginRight="49dp"
-        android:layout_marginEnd="49dp"
-        android:layout_alignTop="@+id/btnCreate"
+        android:layout_below="@+id/textViewPlan"
+        android:layout_marginTop="71dp"
         android:layout_toLeftOf="@+id/btnCreate"
-        android:layout_toStartOf="@+id/btnCreate" />
+        android:layout_toStartOf="@+id/btnCreate"
+        android:text="Location"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textViewStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewLocation"
+        android:layout_alignBottom="@+id/textViewLocation"
+        android:layout_toEndOf="@+id/btnCreate"
+        android:layout_toRightOf="@+id/btnCreate"
         android:text="StartDate"
-        tools:ignore="HardcodedText"
-        android:layout_alignTop="@+id/btnCreate"
-        android:layout_alignLeft="@+id/textViewEndDate"
-        android:layout_alignStart="@+id/textViewEndDate" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textViewEndDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textViewBudget"
+        android:layout_alignBottom="@+id/textViewBudget"
+        android:layout_alignLeft="@+id/textViewStartDate"
+        android:layout_alignStart="@+id/textViewStartDate"
         android:text="EndDate"
-        tools:ignore="HardcodedText"
-        android:layout_alignBottom="@+id/btnCreate"
-        android:layout_toRightOf="@+id/btnCreate"
-        android:layout_toEndOf="@+id/btnCreate"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp" />
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textViewBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Budget"
-        tools:ignore="HardcodedText"
-        android:layout_alignBottom="@+id/btnCreate"
+        android:layout_alignEnd="@+id/textViewLocation"
         android:layout_alignRight="@+id/textViewLocation"
-        android:layout_alignEnd="@+id/textViewLocation" />
+        android:layout_below="@+id/textViewLocation"
+        android:layout_marginTop="40dp"
+        android:text="Budget"
+        tools:ignore="HardcodedText" />
 
 </RelativeLayout>
