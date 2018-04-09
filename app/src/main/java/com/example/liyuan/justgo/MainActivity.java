@@ -281,18 +281,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        search=(Button)findViewById(R.id.searchButton);
+        search=(Button)findViewById(R.id.search);
         search.setText("Search");
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!mySearch.isEmpty()) {
+                if(mySearch!="") {
                     Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
                     intent.putExtra("place_id", mySearch);
                     startActivity(intent);
                 }
                 else{
-                    Log.i(TAG,"Searching tool is empty");
+                    Toast toast=Toast.makeText(MainActivity.this, "Empty",
+                            Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             }
         });
