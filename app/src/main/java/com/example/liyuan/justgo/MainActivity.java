@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                                    searchModel item, int position) {
                                 Toast.makeText(MainActivity.this, item.getTitle(),
                                         Toast.LENGTH_SHORT).show();
-                                myloc=item.getTitle().toString();
+                                myloc=item.getTitle();
                                 dialog.dismiss();
                             }
                         }).show();
