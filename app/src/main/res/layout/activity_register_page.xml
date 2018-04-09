@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp" />
+        android:layout_marginTop="50dp" />
 
     <EditText
         android:id="@+id/txtLastName"
@@ -105,7 +105,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/txtRetype"
         android:layout_alignEnd="@+id/txtRetype"
-        android:layout_marginBottom="11dp" />
+        android:layout_marginBottom="100dp" />
 
     <EditText
         android:id="@+id/txtCountry"

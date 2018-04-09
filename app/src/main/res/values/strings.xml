@@ -24,7 +24,7 @@
     <string name="planner_page">Plans</string>
     <string name="create_a_plan">Create a Plan</string>
     <string name="Go_Main">Return Main Page</string>
-    <string name="your_plans">Your Plans</string>
+    <string name="my_plans">My Plans</string>
     <string name="create_plans">Create your Plan</string>
     <string name="enter_your_country">Enter your Country</string>
     <string name="enter_your_plan_name">Enter your Plan Name</string>
@@ -40,7 +40,7 @@
     <string name="start_date">Start Date</string>
     <string name="plan_budget">Plan Budget</string>
     <string name="description">Description</string>
-    <string name="description_here">Description here</string>
+    <string name="description_here">Add Description here</string>
     <string name="retype_your_password">Confirm Password</string>
     <string name="title_activity_profile_page">Profile</string>
     <string name="title_activity_menu_">Menu_Activity</string>
