@@ -22,6 +22,7 @@ import android.widget.Button;
 
 import android.widget.Toast;
 
+import com.example.liyuan.justgo.Activities.LoginPage;
 import com.example.liyuan.justgo.Activities.PlanPage;
 import com.example.liyuan.justgo.Activities.RegisterPage;
 import com.example.liyuan.justgo.Model.searchModel;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         items.add(new searchModel("Toronto"));
         items.add(new searchModel("Vancouver"));
         items.add(new searchModel("New York"));
+
         items.add(new searchModel("Shanghai"));
         items.add(new searchModel("Beijing"));
         items.add(new searchModel("Tokyo"));
@@ -247,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
         me.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,UserProfile.class);
+                Intent intent=new Intent(MainActivity.this,LoginPage.class);
                 startActivity(intent);
             }
         });
