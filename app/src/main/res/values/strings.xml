@@ -11,6 +11,7 @@
     <string name="plan">Plan</string>
     <string name="register">Register</string>
     <string name="sign_in">Login</string>
+    <string name="LoginWithGoogle">Login With Google</string>
     <string name="create_an_account">Not registered yet? Create one</string>
     <string name="enter_email">Email</string>
     <string name="enter_password">Password</string>
