@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private static PlacesAdapter adapter = null;
     private static Location currentLocation = null;
 
-    private ArrayList<searchModel> createSampleData(){
+   /* private ArrayList<searchModel> createSampleData(){
         ArrayList<searchModel> items = new ArrayList<>();
         items.add(new searchModel("Montreal"));
         items.add(new searchModel("Toronto"));
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         items.add(new searchModel("London"));
         items.add(new searchModel("more..."));
         return items;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,22 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //search button
-        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.newLocation).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new SimpleSearchDialogCompat<>(MainActivity.this, "Search Location...",
-                        "Which city you wonder...?", null, createSampleData(),
-                        new SearchResultListener<searchModel>() {
-                            @Override
-                            public void onSelected(BaseSearchDialogCompat dialog,
-                                                   searchModel item, int position) {
-                                Toast.makeText(MainActivity.this, item.getTitle(),
-                                        Toast.LENGTH_SHORT).show();
-                                myloc=item.getTitle();
-                                dialog.dismiss();
-                            }
-                        }).show();
-
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
             }
         });
 

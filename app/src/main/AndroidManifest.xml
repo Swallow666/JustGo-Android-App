@@ -59,7 +59,8 @@
         <activity
             android:name=".BookmarksActivity"
             android:label="@string/title_activity_bookmarks"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".MapActivity"></activity>
     </application>
 
 </manifest>
